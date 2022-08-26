@@ -123,7 +123,7 @@ public class Question {
             System.exit(0);
         }
     }
-    public void save(){
+    public boolean save(){
         String raw = "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?)";
         String query = String.format(raw , metaData.TABLE_NAME, metaData.QUESTION, metaData.OPTION1, metaData.OPTION2, metaData.OPTION3, metaData.OPTION4, metaData.ANSWER, metaData.QUIZ_ID);
         System.out.println(query);
@@ -141,9 +141,11 @@ public class Question {
                 ps.setInt(7,this.quiz.getQuizId());
                 int i = ps.executeUpdate();
                 System.out.println("updated row: "+ i);
+                return true;
             }
         }catch(Exception e){
             e.printStackTrace();
+            return false;
         }
     }
 }

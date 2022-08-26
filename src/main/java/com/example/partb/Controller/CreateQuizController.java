@@ -45,6 +45,10 @@ public class CreateQuizController implements Initializable {
         option4RadioBtn.setToggleGroup(radioGroup);
     }
     private boolean validate(){
+        if(quiz == null){
+            alertMsg(AlertType.INFORMATION, "Please Enter Quiz title..");
+            return false;
+        }
         String Q = this.question.getText();
         String op1 = this.option1.getText();
         String op2 = this.option2.getText();
@@ -54,14 +58,11 @@ public class CreateQuizController implements Initializable {
         //System.out.println(selectedRadio);
         if(Q.trim().isEmpty() || op1.trim().isEmpty() || op2.trim().isEmpty() || op3.trim().isEmpty() || op4.trim().isEmpty()){
             alertMsg(AlertType.INFORMATION,"Enter the question and all the 4 options..");
-            //System.out.println("Enter the question and all the 4 options..");
         }else{
-            //System.out.println("All the values are entered.. Now Select the radio buttons");
             if(selectedRadio == null){
                 alertMsg(AlertType.INFORMATION,"Select answer...");
             }
             else{
-                //System.out.println("success");
                 return true;
             }
         }
@@ -80,6 +81,7 @@ public class CreateQuizController implements Initializable {
     }
 
     public void submitQuiz(ActionEvent event) {
+        quiz.save(questions);
     }
 
     public void addNextQuestion(ActionEvent event) {
@@ -108,6 +110,7 @@ public class CreateQuizController implements Initializable {
             option3.clear();
             option4.clear();
             questions.add(question);
+            question.setQuiz(quiz);
             System.out.println(questions);
             System.out.println(quiz);
         }

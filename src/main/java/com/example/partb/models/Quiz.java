@@ -1,6 +1,7 @@
 package com.example.partb.models;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class Quiz {
@@ -80,5 +81,15 @@ public class Quiz {
             return -1;
         }
         return -1;
+    }
+    public boolean save(ArrayList<Question> questions){
+        boolean flag = true;
+        this.quizId = this.save();
+        //System.out.println(questions.get(0).getQuiz() == this);
+        for(Question q: questions){
+            flag = flag && q.save();
+            System.out.println(flag);
+        }
+        return flag;
     }
 }
