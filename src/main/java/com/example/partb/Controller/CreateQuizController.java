@@ -32,9 +32,17 @@ public class CreateQuizController implements Initializable {
             radioBtnSetup();
     }
     public void alertMsg(AlertType type, String msg){
-        alert.setAlertType(AlertType.INFORMATION);
-        alert.setTitle("Error!!!");
-        alert.setContentText(msg);
+        alert.setHeight(100);
+        alert.setWidth(500);
+        alert.setAlertType(type);
+        if(type == AlertType.ERROR){
+            alert.setTitle("Error!!!");
+        }else if(type == AlertType.CONFIRMATION){
+            alert.setTitle("Completed!!!");
+        }else if(type == AlertType.INFORMATION){
+            alert.setTitle("Alert!!!");
+        }
+        alert.setHeaderText(msg);
         alert.show();
     }
     private void radioBtnSetup(){
@@ -80,16 +88,13 @@ public class CreateQuizController implements Initializable {
             }
     }
 
-    public void submitQuiz(ActionEvent event) {
-        quiz.save(questions);
-    }
-
-    public void addNextQuestion(ActionEvent event) {
+    private boolean saveQuestion(){
         Question question = new Question();
-        if(validate()){
+        boolean valid = validate();
+        if(valid){
             question.setOption1(option1.getText().trim());
             question.setOption2(option2.getText().trim());
-            question.setOption4(option3.getText().trim());
+            question.setOption3(option3.getText().trim());
             question.setOption4(option4.getText().trim());
             String ans;
             Toggle selected = radioGroup.getSelectedToggle();
@@ -114,5 +119,21 @@ public class CreateQuizController implements Initializable {
             System.out.println(questions);
             System.out.println(quiz);
         }
+        return valid;
+    }
+    public void submitQuiz(ActionEvent event) {
+        boolean flag = saveQuestion();
+        if(flag){
+            flag = quiz.save(questions);
+            if(flag){
+                alertMsg(AlertType.CONFIRMATION, "Created Quiz!!");
+            }else{
+                alertMsg(AlertType.ERROR,"Can't Save quiz");
+            }
+        }
+    }
+
+    public void addNextQuestion(ActionEvent event) {
+        saveQuestion();
     }
 }

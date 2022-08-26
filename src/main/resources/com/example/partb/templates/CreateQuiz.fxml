@@ -181,7 +181,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT">
                      <children>
-                        <RadioButton fx:id="option1RadioBtn" mnemonicParsing="false" text="RadioButton">
+                        <RadioButton fx:id="option1RadioBtn" mnemonicParsing="false" text="Option 1">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -189,7 +189,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton fx:id="option2RadioBtn" mnemonicParsing="false" text="RadioButton">
+                        <RadioButton fx:id="option2RadioBtn" mnemonicParsing="false" text="Option 2">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -197,7 +197,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton fx:id="option3RadioBtn" mnemonicParsing="false" text="RadioButton">
+                        <RadioButton fx:id="option3RadioBtn" mnemonicParsing="false" text="Option 3">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -205,7 +205,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton fx:id="option4RadioBtn" mnemonicParsing="false" text="RadioButton">
+                        <RadioButton fx:id="option4RadioBtn" mnemonicParsing="false" text="Option 4">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

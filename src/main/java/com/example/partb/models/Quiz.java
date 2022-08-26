@@ -37,12 +37,12 @@ public class Quiz {
     }
 
     public static class metaData{
-        public static final String TABLE_NAME = "quizes";
+        public static final String TABLE_NAME = "quiz";
         public static final String TITLE = "title";
         public static final String QUIZ_ID = "quiz_id";
     }
     public static void createTable(){
-        String raw = "CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(50));";
+        String raw = "CREATE TABLE if NOT EXISTS %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(50));";
         String query = String.format(raw, metaData.TABLE_NAME, metaData.QUIZ_ID, metaData.TITLE);
         Connection c = null;
         String url = "jdbc:sqlite:quiz.db";

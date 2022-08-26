@@ -101,7 +101,7 @@ public class Question {
         this.ans = ans;
     }
     public static void createTable(){
-        String raw = "CREATE TABLE %s ( id INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(10000), " +
+        String raw = "CREATE TABLE if NOT EXISTS %s ( id INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(10000), " +
                 "%s VARCHAR(500)," +
                 "%s VARCHAR(500)," +
                 "%s VARCHAR(500)," +
