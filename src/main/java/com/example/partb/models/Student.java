@@ -1,5 +1,7 @@
 package com.example.partb.models;
 
+import com.example.partb.exceptions.LoginException;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -19,6 +21,10 @@ public class Student {
         this.email = email;
         this.branch = branch;
         this.gender = gender;
+        this.password = password;
+    }
+    public Student(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
@@ -171,5 +177,27 @@ public class Student {
         }
         return students;
     }
-
+    public void login() throws SQLException,ClassNotFoundException,LoginException{
+        String raw="SELECT %s, %s, %s, %s FROM %s WHERE %s = ? AND %s = ?";
+        String query = String.format(raw, metaData.USN, metaData.name, metaData.email, metaData.gender,
+                metaData.tableName,metaData.email, metaData.password);
+        System.out.println(query);
+        String url = "jdbc:sqlite:quiz.db";
+        Class.forName("org.sqlite.JDBC");
+        try(Connection c = DriverManager.getConnection(url)){
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, this.email);
+            ps.setString(2, this.password);
+            ResultSet res = ps.executeQuery();
+            if(res.next()){
+                this.setUSN(res.getString(1));
+                this.setName(res.getString(2));
+                this.setEmail(res.getString(3));
+                this.setBranch(res.getString(4));
+                this.setGender(res.getString(5).charAt(0));
+            }else{
+                throw new LoginException("Login Failed");
+            }
+        }
+    }
 }

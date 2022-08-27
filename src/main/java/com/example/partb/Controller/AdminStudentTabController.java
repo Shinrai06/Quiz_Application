@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import com.example.partb.alert;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -29,7 +29,6 @@ public class AdminStudentTabController implements Initializable {
     @FXML private TableColumn<Student, String> emailCol;
     @FXML private TableColumn<Student, String> passwordCol;
     private ToggleGroup toggleGroup;
-    private Alert alert = new Alert(Alert.AlertType.NONE);
     private void radioBtnSetup() {
         toggleGroup = new ToggleGroup();
         this.male.setSelected(true);
@@ -42,20 +41,6 @@ public class AdminStudentTabController implements Initializable {
         this.studentName.clear();
         this.password.clear();
         this.branch.clear();
-    }
-    public void alertMsg(Alert.AlertType type, String msg){
-        alert.setAlertType(type);
-        if(type == Alert.AlertType.ERROR){
-            alert.setTitle("Error!!!");
-        }else if(type == Alert.AlertType.CONFIRMATION){
-            alert.setTitle("Completed!!!");
-        }else if(type == Alert.AlertType.INFORMATION){
-            alert.setTitle("Alert!!!");
-        }else if(type == Alert.AlertType.WARNING){
-            alert.setTitle("Warning!!!");
-        }
-        alert.setHeaderText(msg);
-        alert.show();
     }
     private boolean valid(Student s){
         String msg = null;
@@ -73,7 +58,7 @@ public class AdminStudentTabController implements Initializable {
             msg = "Enter branch";
         }
         if(msg!=null){
-            alertMsg(Alert.AlertType.WARNING, msg);
+            alert.alertMsg(Alert.AlertType.WARNING, msg);
             return false;
         }
         return true;
@@ -101,11 +86,11 @@ public class AdminStudentTabController implements Initializable {
         if(valid(s)){
             System.out.println(s);
             if(s.ifExists("Email", mail) || s.ifExists("USN", usn)){
-                alertMsg(Alert.AlertType.WARNING, "Student already registered!!");
+                alert.alertMsg(Alert.AlertType.WARNING, "Student already registered!!");
                 return;
             }
             if(s.save() != null){
-                alertMsg(Alert.AlertType.CONFIRMATION, "Student details added..." );
+                alert.alertMsg(Alert.AlertType.CONFIRMATION, "Student details added..." );
                 resetForm();
 
                 studentTable.getItems().add(0,s);

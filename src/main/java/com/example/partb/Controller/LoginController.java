@@ -1,10 +1,14 @@
 package com.example.partb.Controller;
 
 import com.example.partb.Verification.Details;
+import com.example.partb.alert;
+import com.example.partb.exceptions.LoginException;
+import com.example.partb.models.Student;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -55,7 +59,16 @@ public class LoginController {
     public void loginStudent() throws IOException{
         String email = studentEmail.getText();
         String password = studentPassword.getText();
+        Student s = new Student(email,password);
+        try{
+            s.login();
+            reset();
+        }catch (Exception e){
+            if(e instanceof LoginException){
+                alert.alertMsg(Alert.AlertType.ERROR,"Invalid Credentials.....");
+                System.out.println("Invalid Email...");
+            }
+        }
         System.out.println(email+"---->"+password);
-        reset();
     }
 }

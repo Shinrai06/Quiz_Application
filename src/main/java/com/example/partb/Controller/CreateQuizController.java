@@ -1,5 +1,6 @@
 package com.example.partb.Controller;
 
+import com.example.partb.alert;
 import com.example.partb.models.Question;
 import com.example.partb.models.Quiz;
 import javafx.event.ActionEvent;
@@ -27,24 +28,11 @@ public class CreateQuizController implements Initializable {
     @FXML private Button quizNameBtn;
     private Quiz quiz=null;
     private ArrayList<Question> questions = new ArrayList<>();
-    private Alert alert = new Alert(AlertType.NONE);
     private ToggleGroup radioGroup;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             radioBtnSetup();
             renderTreeView();
-    }
-    public void alertMsg(AlertType type, String msg){
-        alert.setAlertType(type);
-        if(type == AlertType.ERROR){
-            alert.setTitle("Error!!!");
-        }else if(type == AlertType.CONFIRMATION){
-            alert.setTitle("Completed!!!");
-        }else if(type == AlertType.INFORMATION){
-            alert.setTitle("Alert!!!");
-        }
-        alert.setHeaderText(msg);
-        alert.show();
     }
     private void radioBtnSetup(){
         radioGroup = new ToggleGroup();
@@ -76,7 +64,7 @@ public class CreateQuizController implements Initializable {
     }
     private boolean validate(){
         if(quiz == null){
-            alertMsg(AlertType.INFORMATION, "Please Enter Quiz title..");
+            alert.alertMsg(AlertType.INFORMATION, "Please Enter Quiz title..");
             return false;
         }
         String Q = this.question.getText();
@@ -87,10 +75,10 @@ public class CreateQuizController implements Initializable {
         Toggle selectedRadio = radioGroup.getSelectedToggle();
         //System.out.println(selectedRadio);
         if(Q.trim().isEmpty() || op1.trim().isEmpty() || op2.trim().isEmpty() || op3.trim().isEmpty() || op4.trim().isEmpty()){
-            alertMsg(AlertType.INFORMATION,"Enter the question and all the 4 options..");
+            alert.alertMsg(AlertType.INFORMATION,"Enter the question and all the 4 options..");
         }else{
             if(selectedRadio == null){
-                alertMsg(AlertType.INFORMATION,"Select answer...");
+                alert.alertMsg(AlertType.INFORMATION,"Select answer...");
             }
             else{
                 return true;
@@ -101,7 +89,7 @@ public class CreateQuizController implements Initializable {
     public void setQuizName(ActionEvent event) {
             String title = quizName.getText();
             if(title.trim().isEmpty()){
-                alertMsg(AlertType.INFORMATION, "Invalid Quiz title...");
+                alert.alertMsg(AlertType.INFORMATION, "Invalid Quiz title...");
                 //System.out.println("Invalid Quiz title..");
             }else {
                 quizName.setEditable(false);
@@ -147,9 +135,9 @@ public class CreateQuizController implements Initializable {
         if(flag){
             flag = quiz.save(questions);
             if(flag){
-                alertMsg(AlertType.CONFIRMATION, "Created Quiz!!");
+                alert.alertMsg(AlertType.CONFIRMATION, "Created Quiz!!");
             }else{
-                alertMsg(AlertType.ERROR,"Can't Save quiz");
+                alert.alertMsg(AlertType.ERROR,"Can't Save quiz");
             }
         }
     }
