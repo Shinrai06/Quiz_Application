@@ -11,32 +11,20 @@ import java.net.URL;
 import java.util.*;
 
 public class CreateQuizController implements Initializable {
-    @FXML
-    private TextField quizName;
-    @FXML
-    private TextArea question;
-    @FXML
-    private TextField option1;
-    @FXML
-    private TextField option2;
-    @FXML
-    private TextField option3;
-    @FXML
-    private TextField option4;
-    @FXML
-    private RadioButton option1RadioBtn;
-    @FXML
-    private RadioButton option2RadioBtn;
-    @FXML
-    private RadioButton option3RadioBtn;
-    @FXML
-    private RadioButton option4RadioBtn;
-    @FXML
-    private Button addNextQuestionBtn;
-    @FXML
-    private Button submitQuizBtn;
-    @FXML
-    private Button quizNameBtn;
+    @FXML private TreeView<String> treeView;
+    @FXML private TextField quizName;
+    @FXML private TextArea question;
+    @FXML private TextField option1;
+    @FXML private TextField option2;
+    @FXML private TextField option3;
+    @FXML private TextField option4;
+    @FXML private RadioButton option1RadioBtn;
+    @FXML private RadioButton option2RadioBtn;
+    @FXML private RadioButton option3RadioBtn;
+    @FXML private RadioButton option4RadioBtn;
+    @FXML private Button addNextQuestionBtn;
+    @FXML private Button submitQuizBtn;
+    @FXML private Button quizNameBtn;
     private Quiz quiz=null;
     private ArrayList<Question> questions = new ArrayList<>();
     private Alert alert = new Alert(AlertType.NONE);
@@ -44,6 +32,7 @@ public class CreateQuizController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             radioBtnSetup();
+            renderTreeView();
     }
     public void alertMsg(AlertType type, String msg){
         alert.setAlertType(type);
@@ -63,6 +52,27 @@ public class CreateQuizController implements Initializable {
         option2RadioBtn.setToggleGroup(radioGroup);
         option3RadioBtn.setToggleGroup(radioGroup);
         option4RadioBtn.setToggleGroup(radioGroup);
+    }
+    private void renderTreeView(){
+        Map<Quiz, List<Question>> data = Quiz.getAll();
+        Set<Quiz> quizes = data.keySet();
+        TreeItem<String> root = new TreeItem<String>("List of Quizes");
+        for(Quiz q: quizes){
+            TreeItem<String> quizTreeItm = new TreeItem<String>(q.getTitle());
+            List<Question> questions = data.get(q);
+            for(Question question: questions){
+                TreeItem<String> questionTreeItm = new TreeItem<String>(question.getQuestion());
+                questionTreeItm.getChildren().add(new TreeItem<String>("A: "+question.getOption1()));
+                questionTreeItm.getChildren().add(new TreeItem<String>("B: "+question.getOption2()));
+                questionTreeItm.getChildren().add(new TreeItem<String>("C: "+question.getOption3()));
+                questionTreeItm.getChildren().add(new TreeItem<String>("D: "+question.getOption4()));
+                questionTreeItm.getChildren().add(new TreeItem<String>("ANS: "+question.getAns()));
+                quizTreeItm.getChildren().add(questionTreeItm);
+            }
+            root.getChildren().add(quizTreeItm);
+        }
+        root.setExpanded(true);
+        this.treeView.setRoot(root);
     }
     private boolean validate(){
         if(quiz == null){
@@ -99,7 +109,6 @@ public class CreateQuizController implements Initializable {
                 this.quiz = new Quiz(title);
             }
     }
-
     private boolean saveQuestion(){
         Question question = new Question();
         boolean valid = validate();
@@ -144,7 +153,6 @@ public class CreateQuizController implements Initializable {
             }
         }
     }
-
     public void addNextQuestion(ActionEvent event) {
         saveQuestion();
     }

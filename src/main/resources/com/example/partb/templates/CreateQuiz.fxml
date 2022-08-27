@@ -5,254 +5,185 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="711.0" prefWidth="876.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.partb.Controller.CreateQuizController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="-38.0" layoutY="-26.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER">
+      <SplitPane dividerPositions="0.65" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label text="Create Quiz">
-                     <font>
-                        <Font size="31.0" />
-                     </font>
-                  </Label>
+                  <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="636.0" text="Create Quiz">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Label>
+                        <Separator prefWidth="200.0" />
+                        <FlowPane>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label prefHeight="19.0" prefWidth="85.0" text="Quiz Name: " textAlignment="CENTER">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="quizName" alignment="CENTER" prefHeight="17.0" prefWidth="216.0" promptText="Enter Quiz Name">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="quizNameBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setQuizName" text="Ok">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                        <Separator prefWidth="200.0" />
+                        <FlowPane>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label alignment="TOP_LEFT" prefHeight="96.0" prefWidth="74.0" text="Question:" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextArea fx:id="question" prefHeight="111.0" promptText="Enter the question:">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </TextArea>
+                           </children>
+                        </FlowPane>
+                        <FlowPane>
+                           <children>
+                              <Label contentDisplay="CENTER" text="Option A" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="option1" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane>
+                           <children>
+                              <Label contentDisplay="CENTER" text="Option B" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="option2" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane>
+                           <children>
+                              <Label contentDisplay="CENTER" text="Option C" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="option3" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane>
+                           <children>
+                              <Label contentDisplay="CENTER" text="Option D" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="option4" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane>
+                           <children>
+                              <Label prefHeight="27.0" prefWidth="142.0" text="Correct Answer:" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <RadioButton fx:id="option1RadioBtn" mnemonicParsing="false" text="Option 1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </RadioButton>
+                              <RadioButton fx:id="option2RadioBtn" mnemonicParsing="false" text="Option 2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </RadioButton>
+                              <RadioButton fx:id="option3RadioBtn" mnemonicParsing="false" text="Option 3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </RadioButton>
+                              <RadioButton fx:id="option4RadioBtn" mnemonicParsing="false" text="Option 4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </RadioButton>
+                           </children>
+                        </FlowPane>
+                        <FlowPane>
+                           <children>
+                              <Button fx:id="addNextQuestionBtn" mnemonicParsing="false" onAction="#addNextQuestion" text="Add Next Question">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="submitQuizBtn" mnemonicParsing="false" onAction="#submitQuiz" text="Submit Quiz">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets bottom="5.0" top="10.0" />
-               </VBox.margin>
-            </HBox>
-            <Separator prefWidth="200.0" />
-            <HBox alignment="CENTER_LEFT">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-               </padding>
+            </AnchorPane>
+            <AnchorPane prefHeight="710.0" prefWidth="442.0">
                <children>
-                  <Label prefHeight="19.0" prefWidth="85.0" text="Quiz Name: " textAlignment="CENTER">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="quizName" alignment="CENTER" prefHeight="17.0" prefWidth="216.0" promptText="Enter Quiz Name">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="quizNameBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setQuizName" text="Ok">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <Separator prefWidth="200.0" />
-            <HBox alignment="CENTER_LEFT">
-               <padding>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
-               </padding>
-               <children>
-                  <Label alignment="TOP_LEFT" prefHeight="96.0" prefWidth="74.0" text="Question:" textAlignment="CENTER">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <TextArea fx:id="question" prefHeight="111.0" promptText="Enter the question:">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </TextArea>
-               </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </HBox>
-            <VBox prefWidth="816.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT">
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <children>
-                        <Label contentDisplay="CENTER" text="Option A" textAlignment="CENTER">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="option1" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT">
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <children>
-                        <Label contentDisplay="CENTER" text="Option B" textAlignment="CENTER">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="option2" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT">
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <children>
-                        <Label contentDisplay="CENTER" text="Option C" textAlignment="CENTER">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="option3" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT">
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <children>
-                        <Label contentDisplay="CENTER" text="Option D" textAlignment="CENTER">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="option4" />
-                     </children>
-                  </HBox>
-                  <Label alignment="TOP_LEFT" prefHeight="19.0" prefWidth="191.0" text="Correct Answer:" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="3.0" left="13.0" right="13.0" top="40.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox alignment="CENTER_LEFT">
-                     <children>
-                        <RadioButton fx:id="option1RadioBtn" mnemonicParsing="false" text="Option 1">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </RadioButton>
-                        <RadioButton fx:id="option2RadioBtn" mnemonicParsing="false" text="Option 2">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </RadioButton>
-                        <RadioButton fx:id="option3RadioBtn" mnemonicParsing="false" text="Option 3">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </RadioButton>
-                        <RadioButton fx:id="option4RadioBtn" mnemonicParsing="false" text="Option 4">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </RadioButton>
-                     </children>
-                  </HBox>
-                  <HBox alignment="BOTTOM_RIGHT">
-                     <children>
-                        <Button fx:id="addNextQuestionBtn" mnemonicParsing="false" text="Add Next Question" onAction="#addNextQuestion">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="submitQuizBtn" mnemonicParsing="false" text="Submit Quiz" onAction="#submitQuiz">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets left="20.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </VBox>
-         </children>
-      </VBox>
+                  <TreeView fx:id="treeView" layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package com.example.partb;
 
 import com.example.partb.models.Question;
 import com.example.partb.models.Quiz;
+import com.example.partb.models.Student;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/adminStudentTab.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/adminHome.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -29,6 +30,7 @@ public class Main extends Application {
     private void createTables(){
         Quiz.createTable();
         Question.createTable();
+        Student.createTable();
     }
 
 

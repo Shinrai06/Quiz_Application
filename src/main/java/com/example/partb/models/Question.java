@@ -84,6 +84,7 @@ public class Question {
     public static class metaData{
         public static final String TABLE_NAME = "questions";
         public static final String QUESTION = "question";
+        public static final String QUESTION_ID = "id";
         public static final String OPTION1 = "option1";
         public static final String OPTION2 = "option2";
         public static final String OPTION3 = "option3";
@@ -101,7 +102,7 @@ public class Question {
         this.ans = ans;
     }
     public static void createTable(){
-        String raw = "CREATE TABLE if NOT EXISTS %s ( id INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(10000), " +
+        String raw = "CREATE TABLE if NOT EXISTS %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(10000), " +
                 "%s VARCHAR(500)," +
                 "%s VARCHAR(500)," +
                 "%s VARCHAR(500)," +
@@ -109,7 +110,7 @@ public class Question {
                 "%s VARCHAR(500)," +
                 "%s INTEGER," +
                 "FOREIGN KEY (%s) REFERENCES %s(%s));";
-        String query = String.format(raw,metaData.TABLE_NAME,metaData.QUESTION,metaData.OPTION1,metaData.OPTION2,metaData.OPTION3,metaData.OPTION4,metaData.ANSWER,metaData.QUIZ_ID,metaData.QUIZ_ID,Quiz.metaData.TABLE_NAME,Quiz.metaData.QUIZ_ID);
+        String query = String.format(raw,metaData.TABLE_NAME,metaData.QUESTION_ID,metaData.QUESTION,metaData.OPTION1,metaData.OPTION2,metaData.OPTION3,metaData.OPTION4,metaData.ANSWER,metaData.QUIZ_ID,metaData.QUIZ_ID,Quiz.metaData.TABLE_NAME,Quiz.metaData.QUIZ_ID);
         Connection c = null;
         String url = "jdbc:sqlite:quiz.db";
         try {

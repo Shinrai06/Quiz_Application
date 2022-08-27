@@ -146,6 +146,7 @@
                         <TableColumn fx:id="genderCol" prefWidth="92.00003051757812" text="Gender" />
                       <TableColumn fx:id="emailCol" minWidth="0.0" prefWidth="153.60003662109375" text="Email" />
                         <TableColumn fx:id="branchCol" prefWidth="139.99993286132815" text="Branch" />
+                        <TableColumn fx:id="passwordCol" prefWidth="75.0" text="Password" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
