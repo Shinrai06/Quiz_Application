@@ -17,12 +17,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/adminHome.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            createTables();
+            //Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/adminHome.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            createTables();
         }catch(Exception e){
             e.printStackTrace();
         }
