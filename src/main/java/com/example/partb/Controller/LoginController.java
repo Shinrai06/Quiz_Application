@@ -1,6 +1,7 @@
-package com.example.partb;
+package com.example.partb.Controller;
 
 import com.example.partb.Verification.Details;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,17 +11,21 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-public class AdminLoginController {
+public class LoginController {
 
-    public TextField adminEmail;
-    public PasswordField adminPassword;
-    public Button adminLoginBtn;
-    public PasswordField studentPassword;
-    public Button studentLoginBtm;
-    public TextField studentEmail;
+    @FXML
+    private TextField adminEmail;
+    @FXML
+    private PasswordField adminPassword;
+    @FXML
+    private Button adminLoginBtn;
+    @FXML
+    private PasswordField studentPassword;
+    @FXML
+    private Button studentLoginBtm;
+    @FXML
+    private TextField studentEmail;
 
     public void reset(){
         adminEmail.setText("");
@@ -33,7 +38,7 @@ public class AdminLoginController {
         String password = adminPassword.getText();
         if(email.trim().equalsIgnoreCase(Details.Email) && password.equalsIgnoreCase(Details.Password)){
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("templates/AdminHome.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/AdminHome.fxml"));
                 Stage stage = (Stage)studentPassword.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

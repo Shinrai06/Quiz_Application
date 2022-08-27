@@ -1,5 +1,6 @@
 package com.example.partb.Controller;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -10,16 +11,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminHomeController implements Initializable {
-    public TabPane adminTabPane;
-    public Tab createQuiz;
-    public Tab addStudent;
+    @FXML
+    private TabPane adminTabPane;
+    @FXML
+    private Tab createQuiz;
+    @FXML
+    private Tab addStudent;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
             System.out.println("working...");
-            Parent node = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/CreateQuiz.fxml"));
-            createQuiz.setContent(node);
+            Parent createQuizNode = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/CreateQuiz.fxml"));
+            createQuiz.setContent(createQuizNode);
+            Parent studentNode = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/adminStudentTab.fxml"));
+            addStudent.setContent(studentNode);
         }catch (Exception e){
             e.printStackTrace();
         }

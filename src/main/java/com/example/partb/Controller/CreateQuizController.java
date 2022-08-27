@@ -3,6 +3,7 @@ package com.example.partb.Controller;
 import com.example.partb.models.Question;
 import com.example.partb.models.Quiz;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -10,19 +11,32 @@ import java.net.URL;
 import java.util.*;
 
 public class CreateQuizController implements Initializable {
-    public TextField quizName;
-    public TextArea question;
-    public TextField option1;
-    public TextField option2;
-    public TextField option3;
-    public TextField option4;
-    public RadioButton option1RadioBtn;
-    public RadioButton option2RadioBtn;
-    public RadioButton option3RadioBtn;
-    public RadioButton option4RadioBtn;
-    public Button addNextQuestionBtn;
-    public Button submitQuizBtn;
-    public Button quizNameBtn;
+    @FXML
+    private TextField quizName;
+    @FXML
+    private TextArea question;
+    @FXML
+    private TextField option1;
+    @FXML
+    private TextField option2;
+    @FXML
+    private TextField option3;
+    @FXML
+    private TextField option4;
+    @FXML
+    private RadioButton option1RadioBtn;
+    @FXML
+    private RadioButton option2RadioBtn;
+    @FXML
+    private RadioButton option3RadioBtn;
+    @FXML
+    private RadioButton option4RadioBtn;
+    @FXML
+    private Button addNextQuestionBtn;
+    @FXML
+    private Button submitQuizBtn;
+    @FXML
+    private Button quizNameBtn;
     private Quiz quiz=null;
     private ArrayList<Question> questions = new ArrayList<>();
     private Alert alert = new Alert(AlertType.NONE);
@@ -32,8 +46,6 @@ public class CreateQuizController implements Initializable {
             radioBtnSetup();
     }
     public void alertMsg(AlertType type, String msg){
-        alert.setHeight(100);
-        alert.setWidth(500);
         alert.setAlertType(type);
         if(type == AlertType.ERROR){
             alert.setTitle("Error!!!");
