@@ -11,16 +11,7 @@ import java.util.regex.Pattern;
 
 public class test {
     public static void main(String[] args) {
-        //System.out.println(Quiz.getAll());
-        Student s = new Student("shivareddyc.cs20@gmail.com", "12345678");
-        try{
-            s.login();
-        }catch(Exception e){
-            if(e instanceof LoginException){
-                System.out.println("Invalid Email...");
-            }
-            e.printStackTrace();
-        }
+        System.out.println(Quiz.getAllWithQuestionCount());
        //System.out.println(Student.getAll());
         //System.out.println(Student.getAll().size());
         /*Quiz quiz = new Quiz("MySql Quiz");

@@ -95,7 +95,34 @@ public class Quiz {
         }
         return flag;
     }
-
+    public static Map<Quiz,Integer> getAllWithQuestionCount(){
+        Map<Quiz, Integer> quizes = new HashMap<>();
+        Quiz key = null;
+        List<Question> questions = new ArrayList<>();
+        String raw = "SELECT  %s.%s, %s, COUNT(*) AS question_count FROM %s INNER JOIN %s ON  %s.%s = %s.%s GROUP BY %s.%s";
+        String query = String.format(raw , metaData.TABLE_NAME, metaData.QUIZ_ID, metaData.TITLE, metaData.TABLE_NAME,Question.metaData.TABLE_NAME,
+                Question.metaData.TABLE_NAME, Question.metaData.QUIZ_ID, metaData.TABLE_NAME,metaData.QUIZ_ID, metaData.TABLE_NAME, metaData.QUIZ_ID);
+        System.out.println(query);
+        String url = "jdbc:sqlite:quiz.db";
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try(Connection c = DriverManager.getConnection(url)) {
+                PreparedStatement ps = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ResultSet res = ps.executeQuery();
+                while(res.next()){
+                    Quiz q = new Quiz();
+                    q.setQuizId(res.getInt(1));
+                    q.setTitle(res.getString(2));
+                    int count = res.getInt(3);
+                    quizes.put(q,count);
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return quizes;
+    }
     public static Map<Quiz, List<Question>> getAll(){
         Map<Quiz, List<Question>> quizes = new HashMap<>();
         Quiz key = null;
