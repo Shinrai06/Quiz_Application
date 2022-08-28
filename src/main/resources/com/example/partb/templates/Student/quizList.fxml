@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<AnchorPane prefHeight="419.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.partb.Controller.Student.quizListController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="-27.0" layoutY="-67.0" prefHeight="435.0" prefWidth="552.0"  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <FlowPane fx:id="quizListContainer" alignment="CENTER" prefHeight="282.0" prefWidth="476.0" style="-fx-background-color: #000;">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </FlowPane>
+         </content>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </ScrollPane>
+   </children>
+</AnchorPane>

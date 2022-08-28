@@ -61,7 +61,7 @@ public class LoginController {
         String password = studentPassword.getText();
         Student s = new Student(email,password);
         try{
-            s.login();
+            //s.login();
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/Student/studentHome.fxml"));
                 Stage stage = (Stage)studentPassword.getScene().getWindow();
