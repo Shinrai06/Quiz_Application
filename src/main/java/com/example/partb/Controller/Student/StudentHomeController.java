@@ -1,7 +1,6 @@
 package com.example.partb.Controller.Student;
 
 import com.example.partb.listeners.NewScreenListener;
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;

@@ -28,7 +28,7 @@ public class QuizListController implements Initializable {
             try{
                 Node node = loader.load();
                 CardController card = loader.getController();
-                card.setQuizTitle(quiz.getTitle());
+                card.setQuiz(quiz);
                 card.setNoq(quizes.get(quiz)+"");
                 card.setScreenListener(this.screenListener);
                 quizListContainer.getChildren().add(node);

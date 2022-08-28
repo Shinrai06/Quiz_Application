@@ -168,4 +168,38 @@ public class Quiz {
         }
         return quizes;
     }
+    public List<Question> getQuestionsWithQuizID(){
+        List<Question> questions = new ArrayList<>();
+        String raw = "SELECT  %s, %s, %s, %s, %s, %s, %s FROM %s WHERE %s = ?";
+        String query = String.format(raw , Question.metaData.QUESTION_ID,
+                Question.metaData.QUESTION,Question.metaData.OPTION1,Question.metaData.OPTION2,
+                Question.metaData.OPTION3,Question.metaData.OPTION4,Question.metaData.ANSWER,
+                Question.metaData.TABLE_NAME,Question.metaData.QUIZ_ID);
+        System.out.println(query);
+        String url = "jdbc:sqlite:quiz.db";
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try(Connection c = DriverManager.getConnection(url)) {
+                PreparedStatement ps = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1,this.quizId);
+                ResultSet res = ps.executeQuery();
+                while(res.next()){
+                    Question q = new Question();
+                    q.setQuestionId(res.getInt(1));
+                    q.setQuestion(res.getString(2));
+                    q.setOption1(res.getString(3));
+                    q.setOption2(res.getString(4));
+                    q.setOption3(res.getString(5));
+                    q.setOption4(res.getString(6));
+                    q.setAns(res.getString(7));
+                    q.setQuiz(this);
+                    questions.add(q);
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return questions;
+    }
 }
