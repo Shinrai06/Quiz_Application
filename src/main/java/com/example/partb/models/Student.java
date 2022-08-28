@@ -192,9 +192,8 @@ public class Student {
             if(res.next()){
                 this.setUSN(res.getString(1));
                 this.setName(res.getString(2));
-                this.setEmail(res.getString(3));
-                this.setBranch(res.getString(4));
-                this.setGender(res.getString(5).charAt(0));
+                this.setBranch(res.getString(3));
+                this.setGender(res.getString(4).charAt(0));
             }else{
                 throw new LoginException("Login Failed");
             }

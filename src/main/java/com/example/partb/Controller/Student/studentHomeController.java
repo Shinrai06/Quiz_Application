@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StudentHome implements Initializable {
+public class studentHomeController implements Initializable {
 
     @FXML private Button backBtn;
     @FXML private StackPane stackPanel;

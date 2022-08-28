@@ -27,7 +27,7 @@ public class LoginController {
     @FXML
     private PasswordField studentPassword;
     @FXML
-    private Button studentLoginBtm;
+    private Button studentLoginBtn;
     @FXML
     private TextField studentEmail;
 
@@ -43,7 +43,7 @@ public class LoginController {
         if(email.trim().equalsIgnoreCase(Details.Email) && password.equalsIgnoreCase(Details.Password)){
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/AdminHome.fxml"));
-                Stage stage = (Stage)studentPassword.getScene().getWindow();
+                Stage stage = (Stage)adminPassword.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
             }catch (Exception e){
@@ -62,12 +62,22 @@ public class LoginController {
         Student s = new Student(email,password);
         try{
             s.login();
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/Student/studentHome.fxml"));
+                Stage stage = (Stage)studentPassword.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                System.out.println("logged In!!!");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
             reset();
         }catch (Exception e){
             if(e instanceof LoginException){
                 alert.alertMsg(Alert.AlertType.ERROR,"Invalid Credentials.....");
                 System.out.println("Invalid Email...");
             }
+            e.printStackTrace();
         }
         System.out.println(email+"---->"+password);
     }

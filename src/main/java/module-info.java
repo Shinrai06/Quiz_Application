@@ -13,4 +13,6 @@ module com.example.partb {
     opens com.example.partb.models to javafx.fxml;
     exports com.example.partb.exceptions;
     opens com.example.partb.exceptions to javafx.fxml;
+    exports com.example.partb.Controller.Student;
+    opens com.example.partb.Controller.Student to javafx.fxml;
 }

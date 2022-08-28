@@ -145,7 +145,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </PasswordField>
-                              <Button fx:id="studentLoginBtm" mnemonicParsing="false" onAction="#loginStudent" prefHeight="18.0" prefWidth="90.0" text="Login" textAlignment="CENTER">
+                              <Button fx:id="studentLoginBtn" mnemonicParsing="false" onAction="#loginStudent" prefHeight="18.0" prefWidth="90.0" text="Login" textAlignment="CENTER">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
