@@ -9,8 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class QuestionScreenController implements Initializable {
     @FXML private Label title;
@@ -36,6 +35,7 @@ public class QuestionScreenController implements Initializable {
     private void getData(){
         if(quiz!=null){
             this.questionList = quiz.getQuestionsWithQuizID();
+            Collections.shuffle(this.questionList);
             this.setNextQuestion();
         }
     }
@@ -47,11 +47,17 @@ public class QuestionScreenController implements Initializable {
     private void setNextQuestion(){
         if(currentIndex < questionList.size()) {
             this.currentQuestion = this.questionList.get(currentIndex);
+            List<String> options = new ArrayList<>();
+            options.add(this.currentQuestion.getOption1());
+            options.add(this.currentQuestion.getOption2());
+            options.add(this.currentQuestion.getOption3());
+            options.add(this.currentQuestion.getOption4());
+            Collections.shuffle(options);
             this.question.setText(this.currentQuestion.getQuestion());
-            this.option1Btn.setText(this.currentQuestion.getOption1());
-            this.option2Btn.setText(this.currentQuestion.getOption2());
-            this.option3Btn.setText(this.currentQuestion.getOption3());
-            this.option4Btn.setText(this.currentQuestion.getOption4());
+            this.option1Btn.setText(options.get(0));
+            this.option2Btn.setText(options.get(1));
+            this.option3Btn.setText(options.get(2));
+            this.option4Btn.setText(options.get(3));
             currentIndex++;
         }else{
             hideNextQuestionBtn();
