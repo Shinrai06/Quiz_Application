@@ -1,12 +1,9 @@
 package com.example.partb.Controller.Student;
 
-import com.example.partb.alert;
 import com.example.partb.models.Question;
 import com.example.partb.models.Quiz;
-import javafx.beans.Observable;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableStringValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,6 +50,7 @@ public class QuestionScreenController implements Initializable {
     private Question currentQuestion;
     int currentIndex = 0;
     private QuestionObservable questionObservable;
+    private Map<Question, String> studentAnswers = new HashMap<>();
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
         this.title.setText(this.quiz.getTitle());
@@ -86,6 +84,7 @@ public class QuestionScreenController implements Initializable {
         this.showNextQuestionBtn();
         this.questionObservable = new QuestionObservable();
         bindFields();
+        this.option1Btn.setSelected(true);
     }
     private void bindFields(){
         this.question.textProperty().bind(this.questionObservable.question);
@@ -132,8 +131,6 @@ public class QuestionScreenController implements Initializable {
     private void showSubmitBtn(){
         this.submitQuizBtn.setVisible(true);
     }
-    public void Submit(ActionEvent event) {
-    }
     public void nextQuestion(ActionEvent event) {
         boolean isRight=false;
         {
@@ -142,6 +139,7 @@ public class QuestionScreenController implements Initializable {
             String correctAns = this.currentQuestion.getAns();
             if(userAns.trim().equalsIgnoreCase(correctAns.trim()))
                 isRight=true;
+            studentAnswers.put(this.currentQuestion, userAns);
         }
         Node circleNode = this.progressPane.getChildren().get(currentIndex-1);
         CircleController controller = (CircleController) circleNode.getUserData();
@@ -151,5 +149,8 @@ public class QuestionScreenController implements Initializable {
             controller.setWrongColor();
         }
         this.setNextQuestion();
+    }
+    public void Submit(ActionEvent event) {
+        System.out.println(this.studentAnswers);
     }
 }

@@ -1,8 +1,6 @@
 package com.example.partb;
 
-import com.example.partb.models.Question;
-import com.example.partb.models.Quiz;
-import com.example.partb.models.Student;
+import com.example.partb.models.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +29,8 @@ public class Main extends Application {
         Quiz.createTable();
         Question.createTable();
         Student.createTable();
+        QuizResult.createTable();
+        QuizResultDetails.createTable();
     }
 
 

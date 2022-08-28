@@ -62,7 +62,6 @@ public class Quiz {
         }
         System.out.println("Opened database successfully");
     }
-
     public int save(){
         String raw = "Insert into %s (%s) values (?)";
         String query = String.format(raw , metaData.TABLE_NAME, metaData.TITLE);

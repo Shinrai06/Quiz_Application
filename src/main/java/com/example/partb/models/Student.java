@@ -40,7 +40,7 @@ public class Student {
                 '}';
     }
 
-    private class metaData {
+    public class metaData {
         public static final String tableName = "students";
         public static final String USN = "USN";
         public static final String name = "Name";
