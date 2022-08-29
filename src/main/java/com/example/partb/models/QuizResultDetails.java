@@ -37,7 +37,6 @@ public class QuizResultDetails {
                 Question.metaData.TABLE_NAME,
                 Question.metaData.QUESTION_ID);
         Connection c = null;
-        System.out.println(query);
         String url = "jdbc:sqlite:quiz.db";
         try {
             Class.forName("org.sqlite.JDBC");
@@ -46,11 +45,10 @@ public class QuizResultDetails {
             boolean flag = ps.execute();
             System.out.println(flag);
             c.close();
+            System.out.println(query);
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
         }
-        System.out.println("Opened database successfully");
     }
     public static boolean saveQuizDetails(QuizResult quizResult, Map<Question, String> userAns){
         String raw = "INSERT INTO %s (%s,%s,%s) VALUES (" +
@@ -61,7 +59,6 @@ public class QuizResultDetails {
                 metaData.questionId,
                 metaData.userAns);
         Connection c = null;
-        System.out.println(query);
         String url = "jdbc:sqlite:quiz.db";
         try {
             Class.forName("org.sqlite.JDBC");
@@ -78,6 +75,8 @@ public class QuizResultDetails {
             if(res.length>0){
                 return true;
             }
+            c.close();
+            System.out.println(query);
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             e.printStackTrace();

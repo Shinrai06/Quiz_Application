@@ -118,10 +118,10 @@ public class Question {
             c = DriverManager.getConnection(url);
             PreparedStatement ps = c.prepareStatement(query);
             boolean flag = ps.execute();
-            System.out.println(flag);
+            System.out.println(query);
+            c.close();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
         }
     }
     public boolean save(){

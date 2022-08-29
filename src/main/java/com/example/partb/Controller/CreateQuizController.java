@@ -44,6 +44,7 @@ public class CreateQuizController implements Initializable {
     private void renderTreeView(){
         Map<Quiz, List<Question>> data = Quiz.getAll();
         Set<Quiz> quizes = data.keySet();
+        System.out.println(quizes.size());
         TreeItem<String> root = new TreeItem<String>("List of Quizes");
         for(Quiz q: quizes){
             TreeItem<String> quizTreeItm = new TreeItem<String>(q.getTitle());
@@ -57,6 +58,7 @@ public class CreateQuizController implements Initializable {
                 questionTreeItm.getChildren().add(new TreeItem<String>("ANS: "+question.getAns()));
                 quizTreeItm.getChildren().add(questionTreeItm);
             }
+            //quizTreeItm.setExpanded(true);
             root.getChildren().add(quizTreeItm);
         }
         root.setExpanded(true);
@@ -125,7 +127,7 @@ public class CreateQuizController implements Initializable {
             option4.clear();
             questions.add(question);
             question.setQuiz(quiz);
-            System.out.println(questions);
+            System.out.println(questions.size());
             System.out.println(quiz);
         }
         return valid;
@@ -134,8 +136,11 @@ public class CreateQuizController implements Initializable {
         boolean flag = saveQuestion();
         if(flag){
             flag = quiz.save(questions);
+            quizName.clear();
+            quizName.setEditable(true);
             if(flag){
                 alert.alertMsg(AlertType.CONFIRMATION, "Created Quiz!!");
+                renderTreeView();
             }else{
                 alert.alertMsg(AlertType.ERROR,"Can't Save quiz");
             }

@@ -16,7 +16,6 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         try{
             createTables();
-            //Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/Student/studentHome.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);

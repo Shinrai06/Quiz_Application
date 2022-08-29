@@ -123,6 +123,7 @@ public class QuizResult{
             ps.setInt(2,this.getQuiz().getQuizId());
             ps.setInt(3,this.getRightAnswer());
             int res = ps.executeUpdate();
+            System.out.println(query);
             if(res>0){
                 ResultSet keys = ps.getGeneratedKeys();
                 if(keys.next()){
@@ -136,7 +137,6 @@ public class QuizResult{
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             e.printStackTrace();
         }
-        System.out.println("Opened database successfully");
         return false;
     }
     private boolean saveQuizResultDetails(Map<Question, String> userAns){

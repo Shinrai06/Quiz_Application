@@ -122,10 +122,10 @@ public class Student {
             c = DriverManager.getConnection(url);
             PreparedStatement ps = c.prepareStatement(query);
             boolean flag = ps.execute();
-            System.out.println(flag);
+            System.out.println(query);
+            c.close();
         } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
+            System.err.println( e.getClass().getName() + ": " + e.getMessage());
         }
     }
     public Student save(){
@@ -144,6 +144,7 @@ public class Student {
                 ps.setString(6,String.valueOf(this.gender));
                 int i = ps.executeUpdate();
                 System.out.println("updated row: "+ i);
+                System.out.println(query);
                 return this;
             }
         }catch(Exception e){
@@ -172,6 +173,7 @@ public class Student {
                     s.setGender(keys.getString(6).charAt(0));
                     students.add(s);
                 }
+                System.out.println(query);
             }
         }catch(Exception e){
             e.printStackTrace();
