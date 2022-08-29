@@ -48,6 +48,10 @@ public class StudentHomeController implements Initializable {
                     addScreenTOStackPane(node);
                 }
                 @Override
+                public void removeTopScreen() {
+                    stackPanel.getChildren().remove(stackPanel.getChildren().size()-1);
+                }
+                @Override
                 public void handle(Event event) {
 
                 }

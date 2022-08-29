@@ -49,6 +49,7 @@ public class CardController implements Initializable {
             QuestionScreenController questionScreenController = loader.getController();
             questionScreenController.setQuiz(this.quiz);
             questionScreenController.setStudent(this.student);
+            questionScreenController.setNewScreenListener(this.screenListener);
             this.screenListener.changeScreen(node);
         }catch(Exception e){
             e.printStackTrace();

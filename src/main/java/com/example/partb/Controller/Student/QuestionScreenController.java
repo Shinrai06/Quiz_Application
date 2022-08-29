@@ -1,6 +1,7 @@
 package com.example.partb.Controller.Student;
 
 import com.example.partb.alert;
+import com.example.partb.listeners.NewScreenListener;
 import com.example.partb.models.Question;
 import com.example.partb.models.Quiz;
 import com.example.partb.models.QuizResult;
@@ -49,21 +50,23 @@ public class QuestionScreenController implements Initializable {
     @FXML private RadioButton option4Btn;
     @FXML private Button nextQuestionBtn;
     @FXML private Button submitQuizBtn;
-
+    private NewScreenListener newScreenListener;
     private Quiz quiz;
     private Student student;
-
     public void setStudent(Student student) {
         this.student = student;
     }
 
+    public void setNewScreenListener(NewScreenListener newScreenListener) {
+        this.newScreenListener = newScreenListener;
+    }
     private List<Question> questionList;
     private Question currentQuestion;
     int currentIndex = 0;
     private QuestionObservable questionObservable;
     private Map<Question, String> studentAnswers = new HashMap<>();
     private Integer noOfRightAns = 0;
-    private  Timer timer = new Timer();
+    private  Timer timer;
     private static long min, sec, hr, totSec = 0;
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
@@ -85,7 +88,8 @@ public class QuestionScreenController implements Initializable {
         totSec--;
     }
     private void setTimer(){
-        totSec = (long)this.questionList.size() * 5;
+        totSec = (long)this.questionList.size() * 30;
+        this.timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -208,8 +212,22 @@ public class QuestionScreenController implements Initializable {
         boolean res = quizResult.saveQuizResult(this.studentAnswers);
         if(res){
             alert.alertMsg(Alert.AlertType.CONFIRMATION,"SuccessFully Completed Quiz...");
+            timer.cancel();
+            openResultScreen();
         }else{
             alert.alertMsg(Alert.AlertType.ERROR,"Error saving the results in the dataBase....");
+        }
+    }
+    private void openResultScreen(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/partb/templates/Student/quizResult.fxml"));
+        try{
+            Node node = loader.load();
+            QuizResultController controller = loader.getController();
+            controller.setValues(this.studentAnswers, noOfRightAns, quiz, questionList);
+            this.newScreenListener.removeTopScreen();
+            this.newScreenListener.changeScreen(node);
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 }
