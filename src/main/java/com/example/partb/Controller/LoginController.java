@@ -1,5 +1,6 @@
 package com.example.partb.Controller;
 
+import com.example.partb.Controller.Student.StudentHomeController;
 import com.example.partb.Verification.Details;
 import com.example.partb.alert;
 import com.example.partb.exceptions.LoginException;
@@ -13,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class LoginController {
@@ -61,9 +61,12 @@ public class LoginController {
         String password = studentPassword.getText();
         Student s = new Student(email,password);
         try{
-            //s.login();
+            s.login();
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/Student/studentHome.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/partb/templates/Student/studentHome.fxml"));
+                Parent root = loader.load();
+                StudentHomeController studentHomeController = loader.getController();
+                studentHomeController.setStudent(s);
                 Stage stage = (Stage)studentPassword.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

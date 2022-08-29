@@ -1,7 +1,11 @@
 package com.example.partb.Controller.Student;
 
+import com.example.partb.alert;
 import com.example.partb.models.Question;
 import com.example.partb.models.Quiz;
+import com.example.partb.models.QuizResult;
+import com.example.partb.models.Student;
+import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -14,6 +18,7 @@ import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class QuestionScreenController implements Initializable {
     @FXML private FlowPane progressPane;
@@ -46,15 +51,60 @@ public class QuestionScreenController implements Initializable {
     @FXML private Button submitQuizBtn;
 
     private Quiz quiz;
+    private Student student;
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     private List<Question> questionList;
     private Question currentQuestion;
     int currentIndex = 0;
     private QuestionObservable questionObservable;
     private Map<Question, String> studentAnswers = new HashMap<>();
+    private Integer noOfRightAns = 0;
+    private  Timer timer = new Timer();
+    private static long min, sec, hr, totSec = 0;
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
         this.title.setText(this.quiz.getTitle());
         this.getData();
+    }
+    private String format(long val){
+        if(val<10){
+            return 0+""+val;
+        }
+        return val+"";
+    }
+    public void convertTime(){
+        min = TimeUnit.SECONDS.toMinutes(totSec);
+        sec = totSec-(min*60);
+        hr = TimeUnit.MINUTES.toHours(min);
+        min = min-(hr*60);
+        time.setText(format(hr)+":"+format(min)+":"+format(sec));
+        totSec--;
+    }
+    private void setTimer(){
+        totSec = (long)this.questionList.size() * 5;
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        convertTime();
+                        if(totSec<=0){
+                            timer.cancel();
+                            time.setText("00:00:00");
+                            hideNextQuestionBtn();
+                            Submit(null);
+                            alert.alertMsg(Alert.AlertType.INFORMATION,"Time Up!!, Your responses will be auto saved..");
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(timerTask, 0,1000);
     }
     private void getData(){
         if(quiz!=null){
@@ -62,6 +112,7 @@ public class QuestionScreenController implements Initializable {
             Collections.shuffle(this.questionList);
             renderProgress();
             this.setNextQuestion();
+            setTimer();
         }
     }
     private void renderProgress(){
@@ -137,8 +188,10 @@ public class QuestionScreenController implements Initializable {
             RadioButton selectedBtn = (RadioButton) options.getSelectedToggle();
             String userAns = selectedBtn.getText();
             String correctAns = this.currentQuestion.getAns();
-            if(userAns.trim().equalsIgnoreCase(correctAns.trim()))
+            if(userAns.trim().equalsIgnoreCase(correctAns.trim())){
                 isRight=true;
+                noOfRightAns++;
+            }
             studentAnswers.put(this.currentQuestion, userAns);
         }
         Node circleNode = this.progressPane.getChildren().get(currentIndex-1);
@@ -151,6 +204,12 @@ public class QuestionScreenController implements Initializable {
         this.setNextQuestion();
     }
     public void Submit(ActionEvent event) {
-        System.out.println(this.studentAnswers);
+        QuizResult quizResult = new QuizResult(this.quiz, this.student, this.noOfRightAns);
+        boolean res = quizResult.saveQuizResult(this.studentAnswers);
+        if(res){
+            alert.alertMsg(Alert.AlertType.CONFIRMATION,"SuccessFully Completed Quiz...");
+        }else{
+            alert.alertMsg(Alert.AlertType.ERROR,"Error saving the results in the dataBase....");
+        }
     }
 }

@@ -3,6 +3,8 @@ package com.example.partb.models;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.Map;
+import java.util.Set;
 
 public class QuizResultDetails {
     private Integer id;
@@ -18,7 +20,7 @@ public class QuizResultDetails {
     }
 
     public static void createTable(){
-        String raw = "CREATE TABLE IF NOT EXISTS %s( %s INT NOT null PRIMARY KEY, " +
+        String raw = "CREATE TABLE IF NOT EXISTS %s( %s INTEGER NOT null PRIMARY KEY AUTOINCREMENT, " +
                 "%s INT NOT null, %s INT NOT null, %s VARCHAR(200) NOT null, " +
                 "FOREIGN KEY (%s) REFERENCES %s(%s), " +
                 "FOREIGN KEY (%s) REFERENCES %s(%s));";
@@ -49,5 +51,38 @@ public class QuizResultDetails {
             System.exit(0);
         }
         System.out.println("Opened database successfully");
+    }
+    public static boolean saveQuizDetails(QuizResult quizResult, Map<Question, String> userAns){
+        String raw = "INSERT INTO %s (%s,%s,%s) VALUES (" +
+                " ?, ?, ?);";
+        String query = String.format(raw,
+                metaData.tableName,
+                metaData.quizResultId,
+                metaData.questionId,
+                metaData.userAns);
+        Connection c = null;
+        System.out.println(query);
+        String url = "jdbc:sqlite:quiz.db";
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(url);
+            PreparedStatement ps = c.prepareStatement(query);
+            Set<Question> questions = userAns.keySet();
+            for(Question question: questions){
+                ps.setInt(1,quizResult.getId());
+                ps.setInt(2,question.getQuestionId());
+                ps.setString(3,userAns.get(question));
+                ps.addBatch();
+            }
+            int[] res = ps.executeBatch();
+            if(res.length>0){
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            e.printStackTrace();
+        }
+        System.out.println("Opened database successfully");
+        return false;
     }
 }

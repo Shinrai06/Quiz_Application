@@ -1,6 +1,7 @@
 package com.example.partb.Controller.Student;
 
 import com.example.partb.listeners.NewScreenListener;
+import com.example.partb.models.Student;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -19,9 +20,18 @@ public class StudentHomeController implements Initializable {
     @FXML private Button backBtn;
     @FXML private StackPane stackPanel;
 
+    private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+    public void setStudent(Student student) {
+        this.student = student;
+        addQuizListScreen();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addQuizListScreen();
     }
     private void addScreenTOStackPane(Node node){
         this.stackPanel.getChildren().add(node);
@@ -31,6 +41,7 @@ public class StudentHomeController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/partb/templates/Student/quizList.fxml"));
             Node node = loader.load();
             QuizListController quizListController = loader.getController();
+            quizListController.setStudent(this.student);
             quizListController.setScreenListener(new NewScreenListener() {
                 @Override
                 public void changeScreen(Node node) {
@@ -41,6 +52,7 @@ public class StudentHomeController implements Initializable {
 
                 }
             });
+            quizListController.setCards();
             stackPanel.getChildren().add(node);
         }catch(Exception e){
             e.printStackTrace();

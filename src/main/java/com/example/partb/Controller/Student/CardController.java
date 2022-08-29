@@ -2,6 +2,7 @@ package com.example.partb.Controller.Student;
 
 import com.example.partb.listeners.NewScreenListener;
 import com.example.partb.models.Quiz;
+import com.example.partb.models.Student;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,10 @@ public class CardController implements Initializable {
     @FXML private Label noq;
     @FXML private Label quizTitle;
     private Quiz quiz;
+    private Student student;
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
@@ -43,6 +48,7 @@ public class CardController implements Initializable {
             Node node = loader.load();
             QuestionScreenController questionScreenController = loader.getController();
             questionScreenController.setQuiz(this.quiz);
+            questionScreenController.setStudent(this.student);
             this.screenListener.changeScreen(node);
         }catch(Exception e){
             e.printStackTrace();

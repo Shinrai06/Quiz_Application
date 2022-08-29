@@ -41,6 +41,7 @@ public class Student {
     }
 
     public class metaData {
+        public static final String ID = "id";
         public static final String tableName = "students";
         public static final String USN = "USN";
         public static final String name = "Name";
@@ -106,14 +107,14 @@ public class Student {
         return false;
     }
     public static void createTable(){
-        String raw = "CREATE TABLE IF NOT EXISTS %s ( id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+        String raw = "CREATE TABLE IF NOT EXISTS %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "%s VARCHAR(20),\n" +
                 "%s VARCHAR(30),\n" +
                 "%s VARCHAR(20),\n" +
                 "%s VARCHAR(20),\n" +
                 "%s  VARCHAR(20),\n" +
                 "%s Char);";
-        String query = String.format(raw, metaData.tableName, metaData.USN, metaData.name,metaData.password, metaData.email,metaData.branch,metaData.gender);
+        String query = String.format(raw, metaData.tableName,metaData.ID, metaData.USN, metaData.name,metaData.password, metaData.email,metaData.branch,metaData.gender);
         Connection c = null;
         String url = "jdbc:sqlite:quiz.db";
         try {

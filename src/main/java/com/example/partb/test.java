@@ -7,11 +7,43 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class test {
+
+    static long min, sec, hr, totSec = 0;
+    private static String format(long val){
+        if(val<10){
+            return 0+""+val;
+        }
+        return val+"";
+    }
+    public static void convertTime(){
+        min = TimeUnit.SECONDS.toMinutes(totSec);
+        sec = totSec-(min*60);
+        hr = TimeUnit.MINUTES.toHours(min);
+        min = min-(hr*60);
+        System.out.println(format(hr)+":"+format(min)+":"+format(sec));
+        totSec--;
+    }
     public static void main(String[] args) {
+        totSec = 6;
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("After 1 sec..");
+                convertTime();
+                if(totSec<=0){
+                    System.exit(0);
+                }
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(timerTask, 0,1000);
         //QuizResultDetails.createTable();
         //Quiz quiz = new Quiz();
         //quiz.setQuizId(2);
@@ -35,8 +67,9 @@ public class test {
         //System.out.println(s);
 
         // delete table
-        /*String raw = "DROP TABLE %s;";
-        String query = String.format(raw, tableName);
+        /*
+        String raw = "DROP TABLE %s;";
+        String query = String.format(raw, QuizResultDetails.metaData.tableName);
         Connection c = null;
         System.out.println(query);
         String url = "jdbc:sqlite:quiz.db";
@@ -53,6 +86,6 @@ public class test {
             System.exit(0);
         }
         System.out.println("Opened database successfully");
-         */
+        */
     }
 }
