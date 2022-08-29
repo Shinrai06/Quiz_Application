@@ -85,7 +85,6 @@ public class Quiz {
     public boolean save(ArrayList<Question> questions){
         boolean flag = true;
         this.quizId = this.save();
-        //System.out.println(questions.get(0).getQuiz() == this);
         for(Question q: questions){
             flag = flag && q.save();
             System.out.println(flag);

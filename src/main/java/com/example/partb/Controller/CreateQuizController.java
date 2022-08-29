@@ -75,7 +75,6 @@ public class CreateQuizController implements Initializable {
         String op3 = this.option3.getText();
         String op4 = this.option4.getText();
         Toggle selectedRadio = radioGroup.getSelectedToggle();
-        //System.out.println(selectedRadio);
         if(Q.trim().isEmpty() || op1.trim().isEmpty() || op2.trim().isEmpty() || op3.trim().isEmpty() || op4.trim().isEmpty()){
             alert.alertMsg(AlertType.INFORMATION,"Enter the question and all the 4 options..");
         }else{
@@ -92,10 +91,8 @@ public class CreateQuizController implements Initializable {
             String title = quizName.getText();
             if(title.trim().isEmpty()){
                 alert.alertMsg(AlertType.INFORMATION, "Invalid Quiz title...");
-                //System.out.println("Invalid Quiz title..");
             }else {
                 quizName.setEditable(false);
-                //System.out.println("Valid Quiz title...");
                 this.quiz = new Quiz(title);
             }
     }

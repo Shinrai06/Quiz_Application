@@ -1,9 +1,6 @@
 package com.example.partb.models;
 
 
-import com.example.partb.alert;
-import javafx.scene.control.Alert;
-
 import java.sql.*;
 import java.util.Date;
 import java.util.Map;
