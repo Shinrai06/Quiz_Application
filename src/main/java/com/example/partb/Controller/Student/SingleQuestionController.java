@@ -49,16 +49,16 @@ public class SingleQuestionController implements Initializable {
             option4.setTextFill(Color.web("#26AE60"));
         }
         if(!(this.userAns.trim().equalsIgnoreCase(this.questionObj.getAns()))){
-            if(option1.getText().trim().equalsIgnoreCase(this.questionObj.getAns())){
+            if(option1.getText().trim().equalsIgnoreCase(this.userAns.trim())){
                 option1.setTextFill(Color.web("#B83227"));
             }
-            else if(option2.getText().trim().equalsIgnoreCase(this.questionObj.getAns())){
+            else if(option2.getText().trim().equalsIgnoreCase(this.userAns.trim())){
                 option2.setTextFill(Color.web("#B83227"));
             }
-            else if(option3.getText().trim().equalsIgnoreCase(this.questionObj.getAns())){
+            else if(option3.getText().trim().equalsIgnoreCase(this.userAns.trim())){
                 option3.setTextFill(Color.web("#B83227"));
             }
-            else if(option4.getText().trim().equalsIgnoreCase(this.questionObj.getAns())){
+            else if(option4.getText().trim().equalsIgnoreCase(this.userAns.trim())){
                 option4.setTextFill(Color.web("#B83227"));
             }
         }
