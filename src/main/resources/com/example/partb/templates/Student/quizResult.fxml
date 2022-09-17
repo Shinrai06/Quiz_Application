@@ -18,23 +18,23 @@
                <children>
                   <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #caf0f8;">
                            <children>
                               <PieChart fx:id="attemptedQuestions" layoutX="-181.0" layoutY="-61.0" title="Attempted Questions" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <PieChart fx:id="answers" title="Answers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <PieChart fx:id="answers" style="-fx-background-color: #caf0f8;" title="Answers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </items>
                   </SplitPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #caf0f8;">
                <children>
-                  <HBox alignment="CENTER" prefHeight="43.0" prefWidth="417.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox alignment="CENTER" prefHeight="43.0" prefWidth="417.0" style="-fx-background-color: #caf0f8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label text="Your Answers" wrapText="true">
                            <font>
@@ -43,12 +43,12 @@
                         </Label>
                      </children>
                   </HBox>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #caf0f8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <content>
-                        <VBox fx:id="questionContainer" prefHeight="200.0" prefWidth="100.0" spacing="10.0" />
+                        <VBox fx:id="questionContainer" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #caf0f8;" />
                      </content>
                   </ScrollPane>
                </children>

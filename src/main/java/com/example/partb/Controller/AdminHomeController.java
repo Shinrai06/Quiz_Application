@@ -23,8 +23,10 @@ public class AdminHomeController implements Initializable {
         try{
             System.out.println("working...");
             Parent createQuizNode = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/CreateQuiz.fxml"));
+
             createQuiz.setContent(createQuizNode);
             Parent studentNode = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/adminStudentTab.fxml"));
+
             addStudent.setContent(studentNode);
         }catch (Exception e){
             e.printStackTrace();

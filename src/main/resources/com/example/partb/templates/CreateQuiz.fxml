@@ -20,15 +20,15 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="createQuizVBox" alignment="TOP_CENTER" style="-fx-background-color: #caf0f8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="636.0" text="Create Quiz">
                            <font>
                               <Font size="31.0" />
                            </font>
                         </Label>
-                        <Separator prefWidth="200.0" />
-                        <FlowPane>
+                        <Separator prefWidth="200.0" style="-fx-border-color: #90e0ef;" />
+                        <FlowPane prefHeight="29.0" prefWidth="554.0">
                            <VBox.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
@@ -43,14 +43,14 @@
                                     <Font size="13.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="quizNameBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setQuizName" text="Ok">
+                              <Button fx:id="quizNameBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setQuizName" style="-fx-background-color: #90e0ef; -fx-border-color: #000;" text="Ok">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Button>
                            </children>
                         </FlowPane>
-                        <Separator prefWidth="200.0" />
+                        <Separator prefWidth="200.0" style="-fx-border-color: #90e0ef;" />
                         <FlowPane>
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -64,14 +64,14 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </Label>
-                              <TextArea fx:id="question" prefHeight="111.0" promptText="Enter the question:">
+                              <TextArea fx:id="question" prefHeight="111.0" prefWidth="490.0" promptText="Enter the question:">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </TextArea>
                            </children>
                         </FlowPane>
-                        <FlowPane>
+                        <FlowPane style="-fx-padding: 10;">
                            <children>
                               <Label contentDisplay="CENTER" text="Option A" textAlignment="CENTER">
                                  <font>
@@ -84,7 +84,7 @@
                               <TextField fx:id="option1" />
                            </children>
                         </FlowPane>
-                        <FlowPane>
+                        <FlowPane style="-fx-padding: 10;">
                            <children>
                               <Label contentDisplay="CENTER" text="Option B" textAlignment="CENTER">
                                  <font>
@@ -97,7 +97,7 @@
                               <TextField fx:id="option2" />
                            </children>
                         </FlowPane>
-                        <FlowPane>
+                        <FlowPane style="-fx-padding: 10;">
                            <children>
                               <Label contentDisplay="CENTER" text="Option C" textAlignment="CENTER">
                                  <font>
@@ -110,7 +110,7 @@
                               <TextField fx:id="option3" />
                            </children>
                         </FlowPane>
-                        <FlowPane>
+                        <FlowPane style="-fx-padding: 10;">
                            <children>
                               <Label contentDisplay="CENTER" text="Option D" textAlignment="CENTER">
                                  <font>
@@ -123,7 +123,7 @@
                               <TextField fx:id="option4" />
                            </children>
                         </FlowPane>
-                        <FlowPane>
+                        <FlowPane style="-fx-padding: 10;">
                            <children>
                               <Label prefHeight="27.0" prefWidth="142.0" text="Correct Answer:" textAlignment="CENTER">
                                  <font>
@@ -148,16 +148,16 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="option4RadioBtn" mnemonicParsing="false" text="Option 4">
+                              <RadioButton fx:id="option4RadioBtn" mnemonicParsing="false" prefWidth="98.0" text="Option 4">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </RadioButton>
                            </children>
                         </FlowPane>
-                        <FlowPane>
+                        <FlowPane style="-fx-padding: 10;">
                            <children>
-                              <Button fx:id="addNextQuestionBtn" mnemonicParsing="false" onAction="#addNextQuestion" text="Add Next Question">
+                              <Button fx:id="addNextQuestionBtn" mnemonicParsing="false" onAction="#addNextQuestion" prefHeight="29.0" prefWidth="154.0" style="-fx-background-color: #90e0ef; -fx-border-color: #000;" text="Add Next Question">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
@@ -165,7 +165,7 @@
                                     <Font size="13.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="submitQuizBtn" mnemonicParsing="false" onAction="#submitQuiz" text="Submit Quiz">
+                              <Button fx:id="submitQuizBtn" mnemonicParsing="false" onAction="#submitQuiz" prefHeight="30.0" prefWidth="158.0" style="-fx-background-color: #90e0ef; -fx-border-color: #000;" text="Submit Quiz">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
@@ -179,9 +179,9 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="710.0" prefWidth="442.0">
+            <AnchorPane prefHeight="710.0" prefWidth="442.0" style="-fx-background-color: #caf0f8;">
                <children>
-                  <TreeView fx:id="treeView" layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TreeView fx:id="treeView" layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #caf0f8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

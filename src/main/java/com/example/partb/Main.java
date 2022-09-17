@@ -18,7 +18,9 @@ public class Main extends Application {
             createTables();
             Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
             stage.setScene(scene);
+            //stage.setFullScreen(true);
             stage.show();
         }catch(Exception e){
             e.printStackTrace();
