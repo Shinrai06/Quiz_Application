@@ -46,6 +46,7 @@ public class LoginController {
                 Stage stage = (Stage)adminPassword.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
+                stage.setMaximized(true);
             }catch (Exception e){
                 e.printStackTrace();
                 System.exit(0);
@@ -70,6 +71,7 @@ public class LoginController {
                 Stage stage = (Stage)studentPassword.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
+                stage.setMaximized(true);
                 System.out.println("logged In!!!");
             }catch(Exception e){
                 e.printStackTrace();

@@ -1,0 +1,9 @@
+.text-field{
+    -fx-min-height : 30px;
+
+}
+.button{
+-fx-min-height:20px;
+-fx-background-color:#90e0ef;
+}
+

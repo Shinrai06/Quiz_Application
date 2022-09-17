@@ -12,20 +12,21 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.partb.Controller.Student.QuestionScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.partb.Controller.Student.QuestionScreenController">
    <children>
       <SplitPane dividerPositions="0.7" layoutX="100.0" layoutY="71.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox layoutX="32.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox layoutX="32.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #caf0f8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                        <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #caf0f8;">
                            <items>
                               <Label fx:id="title" prefHeight="18.0" prefWidth="330.0" text="QuizTitle" textAlignment="CENTER" />
                               <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="62.0" text="Time" textAlignment="CENTER" />
                            </items>
                         </ToolBar>
+                        <Separator prefWidth="200.0" style="-fx-background-color: #90e0ef;" />
                         <Label fx:id="question" alignment="TOP_LEFT" prefHeight="88.0" prefWidth="416.0" text="Question" />
                         <RadioButton fx:id="option1Btn" mnemonicParsing="false" text="Option 1">
                            <toggleGroup>
@@ -34,25 +35,25 @@
                         <RadioButton fx:id="option2Btn" mnemonicParsing="false" text="Option 2" toggleGroup="$options" />
                         <RadioButton fx:id="option3Btn" mnemonicParsing="false" text="Option 3" toggleGroup="$options" />
                         <RadioButton fx:id="option4Btn" mnemonicParsing="false" text="Option 4" toggleGroup="$options" />
-                        <Separator prefWidth="200.0">
+                        <Separator prefWidth="200.0" style="-fx-background-color: #90e0ef;">
                            <VBox.margin>
                               <Insets top="30.0" />
                            </VBox.margin>
                         </Separator>
-                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                        <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #caf0f8;">
                           <items>
-                            <Button fx:id="nextQuestionBtn" mnemonicParsing="false" onAction="#nextQuestion" text="Next Question" />
-                              <Button fx:id="submitQuizBtn" mnemonicParsing="false" onAction="#Submit" text="Submit Quiz" />
+                            <Button fx:id="nextQuestionBtn" mnemonicParsing="false" onAction="#nextQuestion" style="-fx-background-color: #90e0ef;" text="Next Question" />
+                              <Button fx:id="submitQuizBtn" mnemonicParsing="false" onAction="#Submit" style="-fx-background-color: #90e0ef;" text="Submit Quiz" />
                           </items>
                         </ToolBar>
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #caf0f8;">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Quiz Progress" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <FlowPane fx:id="progressPane" hgap="10.0" layoutX="10.0" layoutY="59.0" prefHeight="329.0" prefWidth="154.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                  <FlowPane fx:id="progressPane" hgap="10.0" layoutX="10.0" layoutY="59.0" prefHeight="329.0" prefWidth="154.0" style="-fx-background-color: #caf0f8;" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                      <padding>
                         <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                      </padding>
