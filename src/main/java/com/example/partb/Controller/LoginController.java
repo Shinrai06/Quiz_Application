@@ -53,7 +53,10 @@ public class LoginController {
             }
             System.out.println("verified!!");
         }
-        System.out.println(email+"---->"+password);
+        else{
+            alert.alertMsg(Alert.AlertType.ERROR,"Invalid Credentials.....");
+            System.out.println(email+"---->"+password);
+        }
         reset();
     }
 
