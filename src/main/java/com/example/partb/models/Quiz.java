@@ -215,4 +215,27 @@ public class Quiz {
         }
         return questions;
     }
+
+    public static int quizDelete(String quizTitle){
+        String raw = "DELETE FROM quiz WHERE title = (?)";
+        String query = String.format(raw , quizTitle);
+        System.out.println(query);
+        String url = "jdbc:sqlite:quiz.db";
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try(Connection c = DriverManager.getConnection(url)) {
+                PreparedStatement ps = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1,quizTitle);
+                int i = ps.executeUpdate();
+                ResultSet keys = ps.getGeneratedKeys();
+                if(keys.next()){
+                    return keys.getInt(1);
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

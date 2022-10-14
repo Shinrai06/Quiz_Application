@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminHomeController implements Initializable {
+    public Tab deletequiz;
     @FXML
     private TabPane adminTabPane;
     @FXML
@@ -23,11 +24,13 @@ public class AdminHomeController implements Initializable {
         try{
             System.out.println("working...");
             Parent createQuizNode = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/CreateQuiz.fxml"));
-
             createQuiz.setContent(createQuizNode);
-            Parent studentNode = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/adminStudentTab.fxml"));
 
+            Parent studentNode = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/adminStudentTab.fxml"));
             addStudent.setContent(studentNode);
+
+            Parent deleteQuizNode = FXMLLoader.load(getClass().getResource("/com/example/partb/templates/DeleteQuiz.fxml"));
+            deletequiz.setContent(deleteQuizNode);
         }catch (Exception e){
             e.printStackTrace();
         }
